@@ -1,8 +1,18 @@
-body {
-	color:#434444;
+/*-----------------------------------
+  General Styles
+-----------------------------------*/
+
+body{
+  font-size : 14px;
+  background-color: #f2f6f9;
 }
-.container {
-	padding-top:50px;
+
+ul{
+  list-style-type: none;
+}
+
+a:hover {
+  text-decoration:none;
 }
 
 hr{
@@ -10,11 +20,42 @@ hr{
 	border:#px solid #434444;
 }
 
-/*  Product Grid*/
+
+/*-----------------------------------
+  Navbar 
+-----------------------------------*/
+
+.minicart{
+  background:url(../images/sprite.png);
+  background-position: -156px 11px;
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 50px;
+  padding-right: 32px;
+}
+
+.navbar{
+  background-color: #4ea6bc;
+  padding: 15px ;
+  border-radius: 0;
+  margin: 0;
+}
+
+.navbar-brand{
+  color: #fff;
+  font-family: Open Sans, sans-serif;
+  padding-left: 32px;
+}
+
+.navbar-brand:hover{
+  color: #fff;
+}
+/*-----------------------------------
+  Main Page
+  Product Grid
+-----------------------------------*/
 .product-grid{
-	padding-top:20px;
-	padding-bottom:20px;
-	margin:0 auto;
+	padding:20px 20px;
 }
 .product-grid:hover{
 	box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
@@ -59,3 +100,14 @@ hr{
 	background-color:#434444;
 	color:#fff;
 }
+
+
+
+/*-----------------------------------
+  Single Product Page
+-----------------------------------*/
+
+.col-lg-8 { 
+  padding:20px;
+  margin-left:10px;
+ }

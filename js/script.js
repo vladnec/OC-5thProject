@@ -22,7 +22,7 @@ function listProducts(products){
 
     let productList = document.getElementById('products');
     productList.innerHTML = /*html*/`
-            
+            <div class="container">
             <h1 class="text-center">Product Grid</h1>
              <hr>
             <div class="row">
@@ -30,7 +30,7 @@ function listProducts(products){
                     ${ products.map(product => 
                     /*html*/`<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
                                 <div class="image">
-                                    <a href="${product.id}">
+                                    <a href= ./productdetails/?productID=${product.id}/>
                                         <img src="https://i.ytimg.com/vi/lEWCZLOsP4U/maxresdefault.jpg" class="w-100">
                                         <div class="overlay">
                                             <Div class="detail">View Details</Div>
@@ -44,11 +44,13 @@ function listProducts(products){
                         ).join('\n ')
                     }
             </div>
+        </div>
          
         `;
 }
 
-// standard errorMessage
+
+//  standard errorMessage
 function errorMessage(err){
     console.error(err);
 }
