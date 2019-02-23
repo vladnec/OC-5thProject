@@ -30,7 +30,7 @@ request.onload = function () {
 
 	var line = document.createElement('hr');
   	container.appendChild(line);
-  	
+
   	var box = document.createElement('div');
   	box.setAttribute('class','box');
   	box.setAttribute('class','row');
@@ -69,93 +69,3 @@ request.onload = function () {
 }
 
 request.send();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document.addEventListener('DOMContentLoaded',()=>{
-//     getProducts(listProducts,errorMessage);
-// });
-
-
-// request the list of products from the server
-// function getProducts(succes,failure){
-    
-//     let URL = "https://ghibliapi.herokuapp.com/films/" + productID;
-//     fetch(URL,{
-//         method:'GET',
-//         mode:'cors'
-//     })
-//     .then(response=>response.json())
-//     .then(succes)
-//     .catch(failure)
-// }
-// // display list of products
-// function listProducts(products){
-
-//     let productList = document.getElementById('products');
-//     productList.innerHTML = /*html*/`
-//             <div class="container">
-//             <h1 class="text-center">Product Grid</h1>
-//              <hr>
-//             <div class="row">
-    
-//                     ${ products.map(product => 
-//                     /*html*/`
-//                             <p>${product.title}</p>`
-//                         ).join('\n ')
-//                     }
-//             </div>
-//         </div>
-         
-//         `;
-// }
-
-
-// //  standard errorMessage
-// function errorMessage(err){
-//     console.error(err);
-// }
