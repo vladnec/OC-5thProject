@@ -28,20 +28,19 @@ The back-end developer has provided URLs for each store (your mentor will provid
     Camera store
     Handmade teddy bear store
     Oak furniture store
+
+
 Each API contains three endpoints:
 
+| Verb | Endpoint | Expected request body      | Response						   |
+| -----| --------:| :-------------------------:| ---------------------------------:|
+| GET  | /        | -                          | Returns an array of all items     |
+| GET  | /id      | -                          | Returns item corresponding to     |
+| 	   |		  |						       |  given _id                        |
+| POST | /order   | JSON request containing a  | Returns contact object, products  | 
+| 	   |		  |	    contact object and a   | array and orderId (string)        |
+|	   |		  |	    products array         | 								   |
 
-Verb | Endpoint | Expected request body     | Response						       |
-____________________________________________________________________________________
-GET  | /        | -                         | Returns an array of all items    |
-____________________________________________________________________________________
-GET  | /id      | -                         | Returns item corresponding to    |
-										      given _id                        |
-____________________________________________________________________________________
-POST | /order   | JSON request containing a | Returns contact object, products | 
-				  contact object and a      | array and orderId (string)
-				  products array            | 								   |
-____________________________________________________________________________________
 
 For POST routes, the contact object sent to the backend must contain firstName, lastName, address, city and email fields (all required). The products array sent to the backend must be an array of product _id strings.
 
@@ -51,15 +50,10 @@ DATA TYPES
 
 The back-end developer has informed you that all products have the following attributes:
 
-   Field     |  Type
-_________________________
-_id          | String
-_________________________
-Name         | String
-_________________________
-price        | Number
-_________________________
-description  | String
-_________________________
-imageUrl     | String
-_________________________
+| Field         | Type          |
+| ------------- |:-------------:|
+| _id           | string        |
+| Name          | string        |
+| Price         | Number        |
+| description   | string        |
+| imageURL      | string        |

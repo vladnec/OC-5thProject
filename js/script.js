@@ -39,7 +39,7 @@ function listProducts(products){
                                 </div>
                                 <h5 class="text-center">${product.title}</h5>
                                 <h5>Price:$${product.price}</h5>
-                            <a href="#" class="btn buy">BUY</a>
+                            <a href="cart.html" class="btn buy">BUY</a>
                             </div>`
                         ).join('\n ')
                     }
