@@ -33,7 +33,7 @@ The back-end developer has provided URLs for each store (your mentor will provid
 Each API contains three endpoints:
 
 | Verb | Endpoint | Expected request body      | Response						   |
-| -----| :--------| :--------------------------| :--------------------------------:|
+| -----| :--------| :--------------------------| :---------------------------------|
 | GET  | /        | -                          | Returns an array of all items     |
 | GET  | /id      | -                          | Returns item corresponding to     |
 | 	   |		  |						       |  given _id                        |
