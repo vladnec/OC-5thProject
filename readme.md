@@ -9,31 +9,31 @@ Sheila's investors are asking her to set up an initial MVP to demonstrate how he
 
 Initially, the front end will require only four pages:
 
-    A list view page, showing all items available for sale
-    A single product page, which will dynamically show the item selected by the user and allow them to personalize the product and add it to their cart
-    A cart page, showing a summary of products in the cart, the total price, and a form with which to submit an order
-    An order confirmation page, thanking the user for their order, showing the total price and the order ID returned by the server
+    >A list view page, showing all items available for sale
+    >A single product page, which will dynamically show the item selected by the user and allow them to personalize the product and add it to their cart
+    >A cart page, showing a summary of products in the cart, the total price, and a form with which to submit an order
+    >An order confirmation page, thanking the user for their order, showing the total price and the order ID returned by the server
 
 Sheila has had her back-end developer set up APIs for three themed stores and is allowing you to choose whichever store inspires you the most:
 
-    Handmade teddy bears
-    Vintage cameras
-    Oak furniture
+    >Handmade teddy bears
+    >Vintage cameras
+    >Oak furniture
 
 Using your design skills and knowledge of HTML, CSS, and JavaScript, you set out to design and build the web app for one of these three stores.
 API URLs
 
 The back-end developer has provided URLs for each store (your mentor will provide these):
 
-    Camera store
-    Handmade teddy bear store
-    Oak furniture store
+    >Camera store
+    >Handmade teddy bear store
+    >Oak furniture store
 
 
 Each API contains three endpoints:
 
 | Verb | Endpoint | Expected request body      | Response						   |
-| -----| --------:| :-------------------------:| ---------------------------------:|
+| -----| :--------| :--------------------------| :--------------------------------:|
 | GET  | /        | -                          | Returns an array of all items     |
 | GET  | /id      | -                          | Returns item corresponding to     |
 | 	   |		  |						       |  given _id                        |
@@ -51,7 +51,7 @@ DATA TYPES
 The back-end developer has informed you that all products have the following attributes:
 
 | Field         | Type          |
-| ------------- |:-------------:|
+| ------------- |:--------------|
 | _id           | string        |
 | Name          | string        |
 | Price         | Number        |
