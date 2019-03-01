@@ -9,28 +9,6 @@ let params = new URLSearchParams(document.location.search);
 let productID = params.get("productID");
 let url = 'http://localhost:3000/api/teddies/'
 
-
-
-// === additional functions
-function renderTemplate(htmlTemplate, obj) {
-    // Define a regular expression that matches "{{ prop_name }}"
-    var myregex = /\{\{\s*(\w+)\s*\}\}/g;
-    // Replace all occurrences of "{{ prop_name }}" with obj.prop_name
-    var newHtml = htmlTemplate.replace(myregex, function (match, p1) {
-        return obj[p1];
-    });
-    return newHtml;
-}
-
-function getURL(link){
-	if ( productID === null){
-		return link
-	} else {
-		return link + productID;
-	}
-}
-
-
 // === get data from API and display it
 function getData(success,failure){
 	let URL = getURL(url);
@@ -48,15 +26,7 @@ function getData(success,failure){
 function showData(items){
 	let products = document.getElementById('app');
 	if(productID === null) {
-	 products.innerHTML = `
-	<nav class="navbar">
-         <div class="container">
-             <a class="navbar-brand" href="./index.html">TeddyStore</a>
-             <div class="navbar-right">
-                 <a href="cart.html"><div class="container minicart"></div></a>
-             </div>
-         </div>
-     </nav>
+	 products.innerHTML = navbarTemplate + `
      <div class="container">
         <h1 class="text-center">Product Grid</h1>
          <hr>
@@ -81,7 +51,7 @@ function showData(items){
         </div> `
 	} else {
 		var teddyHTML = renderTemplate(itemTemplate, items)
-		products.innerHTML = teddyHTML;
+		products.innerHTML = navbarTemplate + teddyHTML;
 	}
 }
 
@@ -91,26 +61,48 @@ function errorMessage(err){
 }
 
 
+// === additional functions
+function renderTemplate(htmlTemplate, obj) {
+    // Define a regular expression that matches "{{ prop_name }}"
+    var myregex = /\{\{\s*(\w+)\s*\}\}/g;
+    // Replace all occurrences of "{{ prop_name }}" with obj.prop_name
+    var newHtml = htmlTemplate.replace(myregex, function (match, p1) {
+        return obj[p1];
+    });
+    return newHtml;
+}
+
+function getURL(link){
+	if ( productID === null){
+		return link
+	} else {
+		return link + productID;
+	}
+}
+
+
 // ==== template section == /
 var itemTemplate = `
-	<nav class="navbar">
-            <div class="container">
-                <a class="navbar-brand" href="./index.html">TeddyStore</a>
-                <div class="navbar-right">
-                    <a href="../cart.html"><div class="container minicart"></div></a>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <h1 class="text-center">Product Page</h1>
-            <hr>
-            <div class="box row">
-                <img src="{{ imageUrl }}" class="img col-xs-4 col-sm-4 col-m-4 col-lg-4" class="w-100">
-                <div class="desc col-xs-8 col-sm-8 col-m-8 col-lg-8">
-                    <h2>{{ name }}</h2>
-                    <p>{{ description }}</p>
-                    <p>{{ price }}</p>
-                    <button class="btn buy" data-id="{{ _id }}">Buy</button>
-                </div>
-            </div>
-        </div> ` ;
+	<div class="container">
+	    <h1 class="text-center">Product Page</h1>
+	    <hr>
+	    <div class="box row">
+	        <img src="{{ imageUrl }}" class="img col-xs-4 col-sm-4 col-m-4 col-lg-4" class="w-100">
+	        <div class="desc col-xs-8 col-sm-8 col-m-8 col-lg-8">
+	            <h2>{{ name }}</h2>
+	            <p>{{ description }}</p>
+	            <p>$ {{ price }}</p>
+	            <button class="btn buy" data-id="{{ _id }}">Buy</button>
+	        </div>
+	    </div>
+	</div> ` ;
+
+var navbarTemplate = `
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="./index.html">TeddyStore</a>
+        <div class="navbar-right">
+            <a href="../cart.html"><div class="container minicart"></div></a>
+        </div>
+     </div>
+</nav> ` ;
