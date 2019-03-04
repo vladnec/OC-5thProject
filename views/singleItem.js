@@ -1,47 +1,51 @@
- export var singleItem = `;
-<div class="container" style=" display:block;">
-	<div class="row">
-		<div class="col-xs-4 col-sm-4 col-m-4 col-lg-4">
-			<img class="w-100" src="{{ imageUrl }}">
-		</div>
-		<div class="col-xs-8 col-sm-8 col-m-8 col-lg-8">
-
-				<h5> {{ name }} </h5>
-				<p> {{ description }}</p>	
-				<span> {{ price }} </span>
-				<div class="qty">
-					<label>QTY</label>
-					<input class="item_quantity" type="number" value="1" min="1" step="1">
+ export var singleItem = 
+	 `;
+		<div class="container" style=" display:block;">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-m-4 col-lg-4">
+					<img class="w-100" src="{{ imageUrl }}">
 				</div>
-				<div class="options">
-					<label>Color</label>
-					<select class="item_color">
-						<option value="{{ colors[0] }}"> {{ colors }}</option>
-						<option value="{{ colors[1] }}"> {{ colors }}</option>
-						<option value="{{ colors[2] }}"> {{ colors }}</option>
-					</select>
+				<div class="col-xs-8 col-sm-8 col-m-8 col-lg-8">
+
+						<h5> {{ name }} </h5>
+						<p> {{ description }}</p>	
+						<span> {{ price }} </span>
+						<div class="qty">
+							<label>QTY</label>
+							<input class="item_quantity" type="number" value="1" min="1" step="1">
+						</div>
+						<div class="options">
+							<label>Color</label>
+							<select class="item_color">
+								<option value="{{ colors[0] }}"> {{ colors }}</option>
+								<option value="{{ colors[1] }}"> {{ colors }}</option>
+								<option value="{{ colors[2] }}"> {{ colors }}</option>
+							</select>
+						</div>
+						<button class="btn buy pull-right" data-id="{{ _id }}" onclick="addItem()" id="buy">Buy</button>
 				</div>
-				<button class="btn buy pull-right" data-id="{{ _id }}" onclick="addItem()" id="buy">Buy</button>
-		</div>
-	</div>
-</div> `
+			</div>
+		</div> `
 
 
-export var gridTemplate = `<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
-	                        <div class="image">
-	                            <a href= index.html?productID={{ _id }}/>
-	                                <img src="{{ imageUrl }}" class="w-100">
-	                                <div class="overlay">
-	                                    <Div class="detail">View Details</Div>
-	                                </div>
-	                            </a>
-	                        </div>
-	                        <h5 class="text-center">{{ name }}</h5>
-	                        <h5>Price:{{ price }}</h5>
-	                    </div>` ;
+export var gridTemplate = 
+
+	`<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
+		                        <div class="image">
+		                            <a href= index.html?productID={{ _id }}/>
+		                                <img src="{{ imageUrl }}" class="w-100">
+		                                <div class="overlay">
+		                                    <Div class="detail">View Details</Div>
+		                                </div>
+		                            </a>
+		                        </div>
+		                        <h5 class="text-center">{{ name }}</h5>
+		                        <h5>Price:{{ price }}</h5>
+		                    </div>` ;
 
 
-export var cartHeader = `<nav class="navbar">
+export var cartHeader = 
+	`<nav class="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="index.html">TeddyStore</a>
 			<div class="navbar-right">
@@ -67,19 +71,20 @@ export var cartHeader = `<nav class="navbar">
 			<th>Increase</th>
 			<th>Qty</th>
 			<th>Decrease</th>
-			<th>SubTotal></th>
+			<th></th>
 			<th></th>
 		</tr>` ;
 
 
 
-export var cartTemplate = 	`
+export var cartTemplate = 	
+	`
         	<tr>
         		<td><img src="{{ imageUrl }}" height="100px" width="200px"></td>
         		<td>{{ name }}</td>
         		<td>{{ price }}$</td>
         		<td><span class="increase" data-id= "{{ _id }}">+</span></td>
-        		<td>{{ qty }}</td>
+        		<td class="qty">{{ qty }}</td>
         		<td><span class="decrease" data-id= "{{ _id }}">-</span></td>
         		<td class="subtotal">{{ subtotal }}</td>
         		<td>
@@ -89,24 +94,24 @@ export var cartTemplate = 	`
 
         	`
 
-export var cartFooter = 	       `<tr>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th>Total</th>
-	       </tr>
+// export var cartFooter = `<tr>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th></th>
+	    //    	<th>${CART.total}</th>
+	    //    </tr>
 
-	    </table>
+	    // </table>
 
 
-	     <div class="pull-left" id="remove-all">Empty Cart</div>
+	    //  <div class="pull-left" id="remove-all">Empty Cart</div>
 
-	     ` ; 
+	    //  `	     ; 
 
 export function renderTemplate(htmlTemplate, obj) {
 	    // Define a regular expression that matches "{{ prop_name }}"
@@ -118,7 +123,8 @@ export function renderTemplate(htmlTemplate, obj) {
 	    return newHtml;
 	}
 
-export var header = `
+export var header = 
+	`
 	<nav class="navbar">
 	    <div class="container">
 	        <a class="navbar-brand" href="./index.html">TeddyStore</a>
@@ -136,4 +142,4 @@ export var header = `
 export var footer = 
 
 		`</div>
-    </div> `
+    	</div> `

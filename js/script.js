@@ -24,7 +24,6 @@
 
 // take the url from the URL path
 	let params = new URLSearchParams(document.location.search);
-	var currentPage = document.location.href.substring(document.location.href.lastIndexOf("/")+1, document.location.href.length);
 	let productID = params.get("productID");
 	let url = 'http://localhost:3000/api/teddies/'
 	
@@ -111,7 +110,6 @@
 	function addItem(ev){
 		ev.preventDefault();
 		let id = ev.target.getAttribute('data-id');
-		console.log('added to cart', id);
 		CART.add(id,1);
 
 	}
