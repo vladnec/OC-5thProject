@@ -6,6 +6,7 @@
 	// import {cartFooter} from '../views/singleItem.js'
 	import {cartHeader} from '../views/singleItem.js'
 	import {cartTemplate} from '../views/singleItem.js'
+	import {restOrder} from '../views/singleItem.js'
 
 
 // when page loads 
@@ -29,35 +30,7 @@ function showCart(){
 		cartHTML += productHTML
 	}
 
-	cart.innerHTML = `<nav class="navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">TeddyStore</a>
-			<div class="navbar-right">
-				<a href="cart.html"><div class="container minicart"></div></a>
-			</div>
-		</div>
-	</nav>
-
-	<div class="container cart">
-		
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-lg-12 col-m-12 text-center">
-				<div class="page-header">
-					<h1>Your Shopping Cart<small> That little bucket of joy</small></h1>
-				</div>
-			</div>
-		</div>
-		<table>
-		<tr>
-			<th>Image</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Increase</th>
-			<th>Qty</th>
-			<th>Decrease</th>
-			<th></th>
-			<th></th>
-		</tr>` + cartHTML +    
+	cart.innerHTML = cartHeader + cartHTML +    
 			`<tr>
 	       	<th></th>
 	       	<th></th>
@@ -67,61 +40,59 @@ function showCart(){
 	       	<th></th>
 	       	<th></th>
 	       	<th></th>
-	       	<th>${CART.total}</th>
-	       </tr>
-	    	</table>
-	     	<div class="pull-left" id="remove-all">Empty Cart</div>
-	     	<form>
-			<div class="form-row">
-			  	 <div class="form-group col-md-6">
-				    <label for="firstName">First Name</label>
-				    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name">
-				  </div>
-				  <div class="form-group col-md-6">
-				    <label for="lastName">Last Name</label>
-				    <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
-				  </div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputAddress">Address</label>
-			    	<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputCity">City</label>
-			      	<input type="text" class="form-control" id="inputCity" placeholder="e.g. Boston">
-				</div>
-			</div>			 
-			<div class="form-group">
-			   	<label for="inputEmail4">Email</label>
-			   	<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-			</div>
-			  <button type="submit" class="btn btn-primary">Confirm Order!</button>
-			</form>
+	       	<th>${CART.total}` + restOrder; 
 
-	      </div>
-    	</div> `;
+// Cart functionality buttons
+	let increaseButton = document.getElementsByClassName('increase');
+	for(var i=0 ; i < increaseButton.length ; i++){
+	 increaseButton[i].addEventListener('click', increaseCart)
+	}
 
-	 let increaseButton = document.getElementsByClassName('increase');
-	 for(var i=0 ; i < increaseButton.length ; i++){
-	 	increaseButton[i].addEventListener('click', increaseCart)
-	 }
+	let decreaseButton = document.getElementsByClassName('decrease');
+	for(var i=0 ; i < decreaseButton.length ; i++){
+	 decreaseButton[i].addEventListener('click', decreaseCart)
+	}
 
-	 let decreaseButton = document.getElementsByClassName('decrease');
-	 for(var i=0 ; i < decreaseButton.length ; i++){
-	 	decreaseButton[i].addEventListener('click', decreaseCart)
-	 }
-
-	 let emptyCart = document.getElementById('remove-all');
-	 emptyCart.addEventListener('click', emptyCartFn);
+	let emptyCart = document.getElementById('remove-all');
+	emptyCart.addEventListener('click', emptyCartFn);
 	 
- 	 let removeBtn = document.getElementsByTagName('i');
-	 for(var i=0 ; i < removeBtn.length; i++){
-	 	removeBtn[i].addEventListener('click',removeItem);
-	 }
+ 	let removeBtn = document.getElementsByTagName('i');
+	for(var i=0 ; i < removeBtn.length; i++){
+	 removeBtn[i].addEventListener('click',removeItem);
+	}
 
+
+
+// Form functionality buttons
+	let firstName = document.getElementById('firstName');
+	let lastName = document.getElementById('lastName');
+	let inputAdress = document.getElementById('inputAdress');
+	let inputCity = document.getElementById('inputCity');
+	let inputEmail = document.getElementById('inputEmail');
+	let submitBtn = document.getElementById('confirm');
+
+// take product out of localStorage
+	let productString = [];
+		for(let obj of CART.contents){
+			productString.push(obj._id);
+		};
+	 
+// Create object with form data and product and make POST request
+	 submitBtn.addEventListener('click', ($event) =>{
+	 	$event.preventDefault();
+	 	const orderData = {
+					contact : { 
+						firstName: firstName.value,
+						lastName : lastName.value,
+						address: inputAddress.value,
+						city: inputCity.value,
+						email: inputEmail.value
+					},
+					products : productString
+		}
+		submitFormData(orderData);
+	 });		
 }
-
 
 // === Additional Functions 
 
@@ -153,8 +124,45 @@ function showCart(){
 	    showCart();
 	}
 
+	function makeRequest(data){
+		return new Promise((resolve,reject)=>{
+			let request = new XMLHttpRequest();
+			request.open('POST', 'http://localhost:3000/api/teddies/order');
+			request.onreadystatechange = () =>{
+				if(request.readyState ===4) {
+					if(request.status === 201){
+						resolve(JSON.parse(request.response));
+					} else {
+						console.log(data);
+						// resolve(console.log(request.response));
+					}
+				}
+			};
+			request.setRequestHeader('Content-Type', 'application/json');
+			request.send(JSON.stringify(data));
+		});
+	}
 
+	async function submitFormData(post){
+	  try {
+	    const requestPromise = makeRequest(post);
+	    const response = await requestPromise;
+	    postOrderData(response);
+	  }
+	  catch(errorResponse) {
+	    console.log(errorResponse);
+	  }
+	}
 
+	function postOrderData(data){
+		let orderConfirm = document.getElementById('cart'); 
+		orderConfirm.innerHTML = header + 
+
+		`
+		<div class="orderInfo">
+			<p>Thank you for your order, your order Id is ${data.orderId}</p>
+			<p>Order total $<strong>${CART.total}<strong></p>
+		</div>` + footer;
+		CART.empty();
+	}
 	
-
-
