@@ -1,36 +1,6 @@
- export var singleItem = 
-	 `;
-		<div class="container" style=" display:block;">
-			<div class="row">
-				<div class="col-xs-4 col-sm-4 col-m-4 col-lg-4">
-					<img class="w-100" src="{{ imageUrl }}">
-				</div>
-				<div class="col-xs-8 col-sm-8 col-m-8 col-lg-8">
-
-						<h5> {{ name }} </h5>
-						<p> {{ description }}</p>	
-						<span> {{ price }} </span>
-						<div class="qty">
-							<label>QTY</label>
-							<input class="item_quantity" type="number" value="1" min="1" step="1">
-						</div>
-						<div class="options">
-							<label>Color</label>
-							<select class="item_color">
-								<option value="{{ colors[0] }}"> {{ colors }}</option>
-								<option value="{{ colors[1] }}"> {{ colors }}</option>
-								<option value="{{ colors[2] }}"> {{ colors }}</option>
-							</select>
-						</div>
-						<button class="btn buy pull-right" data-id="{{ _id }}" onclick="addItem()" id="buy">Buy</button>
-				</div>
-			</div>
-		</div> `
-
-
 export var gridTemplate = 
 
-	`<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
+							`<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
 		                        <div class="image">
 		                            <a href= index.html?productID={{ _id }}/>
 		                                <img src="{{ imageUrl }}" class="w-100">
@@ -44,74 +14,32 @@ export var gridTemplate =
 		                    </div>` ;
 
 
-export var cartHeader = 
-	`<nav class="navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">TeddyStore</a>
-			<div class="navbar-right">
-				<a href="cart.html"><div class="container minicart"></div></a>
-			</div>
+export var cartTemplate = `
+
+	<div class="product">
+		<div class="buttons">
+			<img src="./images/delete-icn.svg" alt="removeSign" class="delete-btn" data-id= "{{ _id }}"/>
 		</div>
-	</nav>
 
-	<div class="container cart">
-		
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-lg-12 col-m-12 text-center">
-				<div class="page-header">
-					<h1>Your Shopping Cart<small> That little bucket of joy</small></h1>
-				</div>
-			</div>
+		<div class="cartImage"><img src="{{ imageUrl }}" height="80px" width="120px" id="image"> </div>
+
+		<div class="description">
+			<span> {{ name }}</span>
 		</div>
-		<table>
-		<tr>
-			<th>Image</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Increase</th>
-			<th>Qty</th>
-			<th>Decrease</th>
-			<th></th>
-			<th></th>
-		</tr>` ;
 
+		<div class="quantity">
+			<button class="plus-qtyBtn increase" type="button" name="button" data-id= "{{ _id }}">
+				<img src="./images/plus.svg" alt="plusSign" />
+			</button>	
+			<input type="text" name="name" value="{{ qty }}" data-id= "{{ _id }}">
+			<button class="minus-qtyBtn decrease" type="button" name="button" data-id= "{{ _id }}">
+				<img src="./images/minus.svg" alt="minusSign" />
+			</button>
+		</div>
+		<div class="total-price">{{ subtotal }}$</div>
+	</div>
+`
 
-
-export var cartTemplate = 	
-	`
-        	<tr>
-        		<td><img src="{{ imageUrl }}" height="100px" width="200px"></td>
-        		<td>{{ name }}</td>
-        		<td>{{ price }}$</td>
-        		<td><span class="increase" data-id= "{{ _id }}">+</span></td>
-        		<td class="qty">{{ qty }}</td>
-        		<td><span class="decrease" data-id= "{{ _id }}">-</span></td>
-        		<td class="subtotal">{{ subtotal }}</td>
-        		<td>
-			          <i class="fas fa-times" data-id="{{ _id }}"></i>
-        		</td>
-        	</tr>
-
-        	`
-
-// export var cartFooter = `<tr>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th></th>
-	    //    	<th>${CART.total}</th>
-	    //    </tr>
-
-	    // </table>
-
-
-	    //  <div class="pull-left" id="remove-all">Empty Cart</div>
-
-	    //  `	     ; 
 
 export function renderTemplate(htmlTemplate, obj) {
 	    // Define a regular expression that matches "{{ prop_name }}"
@@ -122,59 +50,3 @@ export function renderTemplate(htmlTemplate, obj) {
 	    });
 	    return newHtml;
 	}
-
-export var header = 
-	`
-	<nav class="navbar">
-	    <div class="container">
-	        <a class="navbar-brand" href="./index.html">TeddyStore</a>
-	        <div class="navbar-right">
-	            <a href="./cart.html"><div class="container minicart"></div></a>
-	        </div>
-	     </div>
-	</nav>
-    <div class="container">
-    	<h1 class="text-center">Hei</h1>
-        <hr>
-        <div class="row"> `
- ;
-
-export var footer = 
-
-		`</div>
-    	</div> `
-
-export var restOrder = `</th>
-	       </tr>
-	    	</table>
-	     	<div class="pull-left" id="remove-all">Empty Cart</div>
-	     	<form>
-			<div class="form-row">
-			  	 <div class="form-group col-md-6">
-				    <label for="firstName">First Name</label>
-				    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name">
-				  </div>
-				  <div class="form-group col-md-6">
-				    <label for="lastName">Last Name</label>
-				    <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
-				  </div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputAddress">Address</label>
-			    	<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputCity">City</label>
-			      	<input type="text" class="form-control" id="inputCity" placeholder="e.g. Boston">
-				</div>
-			</div>			 
-			<div class="form-group">
-			   	<label for="inputEmail4">Email</label>
-			   	<input type="email" class="form-control" id="inputEmail" placeholder="Email">
-			</div>
-			  <button id="confirm" type="submit" class="btn btn-primary">Confirm Order!</button>
-			</form>
-
-	      </div>
-    	</div> `

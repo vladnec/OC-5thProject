@@ -1,69 +1,56 @@
 // import 
 	import {CART} from './cart.js';
-	import {header} 	from '../views/singleItem.js'
-	import {footer} 	from '../views/singleItem.js'
 	import {renderTemplate} from '../views/singleItem.js'
-	// import {cartFooter} from '../views/singleItem.js'
-	import {cartHeader} from '../views/singleItem.js'
 	import {cartTemplate} from '../views/singleItem.js'
-	import {restOrder} from '../views/singleItem.js'
 
 
 // when page loads 
 	document.addEventListener('DOMContentLoaded',()=>{
-	    // when the page is ready
 	    // get items from localStorage
 	    CART.init();
+	    // 
 	    CART.getTotal();
 	    // display items
 	    showCart();
 	});
 
+	function showCart(){
+		let cart = document.querySelector('.products'); 
+		let objects = CART.sort('name');
+		let cartHTML = '';
+		for (let object of objects){
+			let productHTML = renderTemplate(cartTemplate, object);
+			cartHTML += productHTML
+		}
+		cart.innerHTML = cartHTML
+
+	// cart functionality
+
+		// selecting the buttons
+		let increaseButton = document.querySelectorAll('.increase');
+		let decreaseButton = document.querySelectorAll('.decrease');
+		let removeBtn = document.querySelectorAll('.delete-btn');
+		
+		let totalPrice = document.querySelector('.total')
+		totalPrice.innerHTML = 'Total price: $' +CART.total;
+
+		// adding Event Listeners
+		for(var i=0 ; i < increaseButton.length ; i++){
+		 increaseButton[i].addEventListener('click', increaseCart)};
+		
+		for(var i=0 ; i < decreaseButton.length ; i++){
+		 decreaseButton[i].addEventListener('click', decreaseCart)};
+	 	
+		for(var i=0 ; i < removeBtn.length; i++){
+		 removeBtn[i].addEventListener('click',removeItem);}	 
+}
 
 
-function showCart(){
-	let cart = document.getElementById('cart'); 
-	let objects = CART.sort('name');
-	let cartHTML = '';
-	for (let object of objects){
-		let productHTML = renderTemplate(cartTemplate, object);
-		cartHTML += productHTML
-	}
-
-	cart.innerHTML = cartHeader + cartHTML +    
-			`<tr>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th></th>
-	       	<th>${CART.total}` + restOrder; 
-
-// Cart functionality buttons
-	let increaseButton = document.getElementsByClassName('increase');
-	for(var i=0 ; i < increaseButton.length ; i++){
-	 increaseButton[i].addEventListener('click', increaseCart)
-	}
-
-	let decreaseButton = document.getElementsByClassName('decrease');
-	for(var i=0 ; i < decreaseButton.length ; i++){
-	 decreaseButton[i].addEventListener('click', decreaseCart)
-	}
-
+// variables
 	let emptyCart = document.getElementById('remove-all');
 	emptyCart.addEventListener('click', emptyCartFn);
-	 
- 	let removeBtn = document.getElementsByTagName('i');
-	for(var i=0 ; i < removeBtn.length; i++){
-	 removeBtn[i].addEventListener('click',removeItem);
-	}
 
-
-
-// Form functionality buttons
+// form functionality buttons
 	let firstName = document.getElementById('firstName');
 	let lastName = document.getElementById('lastName');
 	let inputAdress = document.getElementById('inputAdress');
@@ -71,15 +58,16 @@ function showCart(){
 	let inputEmail = document.getElementById('inputEmail');
 	let submitBtn = document.getElementById('confirm');
 
-// take product out of localStorage
+// create the array containing all CART.contents._id
 	let productString = [];
 		for(let obj of CART.contents){
 			productString.push(obj._id);
 		};
-	 
-// Create object with form data and product and make POST request
-	 submitBtn.addEventListener('click', ($event) =>{
+
+// create object with form data and product and make POST request
+	submitBtn.addEventListener('click', ($event) =>{
 	 	$event.preventDefault();
+
 	 	const orderData = {
 					contact : { 
 						firstName: firstName.value,
@@ -92,29 +80,27 @@ function showCart(){
 		}
 		submitFormData(orderData);
 	 });		
-}
 
-// === Additional Functions 
+// additional functions 
 
 	function emptyCartFn(ev){
 		ev.preventDefault();
 		CART.empty();
 		showCart();
-
 	}
+
 	function removeItem(ev){
 		ev.preventDefault();
 		let id = ev.target.getAttribute('data-id');
 		CART.remove(id);
 		showCart();
-
 	}
+
 	function increaseCart(ev){
 	    ev.preventDefault();
 	    let id = ev.target.getAttribute('data-id');
 	    CART.increase(id, 1);
 	    showCart();
-
 	}
 	        
 	function decreaseCart(ev){
@@ -133,8 +119,7 @@ function showCart(){
 					if(request.status === 201){
 						resolve(JSON.parse(request.response));
 					} else {
-						console.log(data);
-						// resolve(console.log(request.response));
+						reject(JSON.parse(request.response));
 					}
 				}
 			};
@@ -156,13 +141,11 @@ function showCart(){
 
 	function postOrderData(data){
 		let orderConfirm = document.getElementById('cart'); 
-		orderConfirm.innerHTML = header + 
-
-		`
-		<div class="orderInfo">
+		orderConfirm.innerHTML =
+		`<div class="orderInfo">
 			<p>Thank you for your order, your order Id is ${data.orderId}</p>
 			<p>Order total $<strong>${CART.total}<strong></p>
-		</div>` + footer;
+		</div>`;
 		CART.empty();
 	}
 	

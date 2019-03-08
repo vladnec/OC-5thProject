@@ -1,11 +1,9 @@
 // import 
 
 	import {CART} 		from './cart.js';
-	import {header} 	from '../views/singleItem.js'
-	import {footer} 	from '../views/singleItem.js'
 	import {gridTemplate} from '../views/singleItem.js'
 	import {renderTemplate} from '../views/singleItem.js'
-	// import {singleItem} from '../views/singleItem.js'
+
 
 // export PRODUCTS 
 
@@ -28,6 +26,7 @@
 	let url = 'http://localhost:3000/api/teddies/'
 	
 
+
 // === get data from API and display it
 	function getData(success,failure){
 		let URL = getURL(url);
@@ -40,25 +39,23 @@
 		.catch(err=>{
 			failure(err.message);
 		})
+
 	}
 
 	function showData( items ){
 		let products = document.getElementById('app');
 		PRODUCT = items;
-		// console.log(teddybears);
 		if(productID === null) {
 		let gridHTML = ''
 		for (let product of items){
 				let productHTML = renderTemplate(gridTemplate, product);
 				gridHTML += productHTML
 			}
-		 products.innerHTML = header + gridHTML + footer;
+		 products.innerHTML =gridHTML;
 
 		} else {
-			// display content
-			// var teddyHTML = renderTemplate(singleItem, items)
-			// console.log(items);
-			products.innerHTML = header + `
+
+			products.innerHTML =`
 				<div class="row">
 					<div class="col-xs-4 col-sm-4 col-m-4 col-lg-4">
 						<img class="w-100" src=" ${items.imageUrl}">
@@ -78,12 +75,8 @@
 						<button class="btn buy pull-right" data-id="${items._id}" id="buy">Buy</button>
 				 	</div>
 				</div>
-			</div>`
-		 + footer;
-		 	var colorValue = document.getElementById('item_color')
-		 	colorValue.addEventListener('change', function(){
-		 	});
-			var button = document.getElementById('buy');
+			</div>`;
+			var button = document.querySelector('#buy');
 			button.addEventListener('click',addItem);
 		}
 	}
