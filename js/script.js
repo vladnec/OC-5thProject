@@ -1,13 +1,11 @@
 // import 
 
-	import {CART} 		from './cart.js';
-	import {gridTemplate} from '../views/singleItem.js'
-	import {renderTemplate} from '../views/singleItem.js'
-	import {headerTemplate} from '../views/singleItem.js'
-
+	import {CART} 			from './cart.js';
+	import {renderTemplate} from './utils.js'
+	import {gridTemplate} 	from '../views/templates.js'
+	import {headerTemplate} from '../views/templates.js'
 
 let PRODUCT = [];
-
 
 // when page loads 
 	document.addEventListener('DOMContentLoaded',()=>{
@@ -17,14 +15,11 @@ let PRODUCT = [];
 	    CART.init();
 	});
 
-
 // take the url from the URL path
 	let params = new URLSearchParams(document.location.search);
 	let productID = params.get("productID");
 	let url = 'http://localhost:3000/api/teddies/'
 	
-
-
 // === get data from API and display it
 	function getData(success,failure){
 		let URL = getURL(url);
@@ -93,10 +88,7 @@ let PRODUCT = [];
 	            console.error(err);
 	}
 
-
 // === additional functions
-
-
 	function getURL(link){
 		if ( productID === null){
 			return link
@@ -104,12 +96,9 @@ let PRODUCT = [];
 			return link + productID;
 		}
 	}
-
-
-
+	
 	function addItem(ev){
 		ev.preventDefault();
 		let id = ev.target.getAttribute('data-id');
 		CART.add(id,PRODUCT);
-
 	}

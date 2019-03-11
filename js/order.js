@@ -1,10 +1,9 @@
 // import 
-	import {CART} from './cart.js';
-	import {renderTemplate} from '../views/singleItem.js'
-	import {cartTemplate} from '../views/singleItem.js'
-	import {addAnimation} from './cart.js'
-
-
+	import {CART} 			from './cart.js';
+	import {cartTemplate} 	from '../views/templates.js'
+	import {renderTemplate} from './utils.js'
+	import {addAnimation} 	from './utils.js'
+	import {regex} 	from './utils.js'
 
 // when page loads 
 	document.addEventListener('DOMContentLoaded',()=>{
@@ -18,20 +17,17 @@
 
 // render the cart
 
-function showCart(){
-		let cart = document.querySelector('.products'); 
-		let objects = CART.sort('name');
-		let cartHTML = '';
-		for (let object of objects){
-			let productHTML = renderTemplate(cartTemplate, object);
-			cartHTML += productHTML
-		}
-		cart.innerHTML = cartHTML
-		addListeners();
-}
-
-
-// create the array containing all CART.contents._id
+	function showCart(){
+			let cart = document.querySelector('.products'); 
+			let objects = CART.sort('name');
+			let cartHTML = '';
+			for (let object of objects){
+				let productHTML = renderTemplate(cartTemplate, object);
+				cartHTML += productHTML
+			}
+			cart.innerHTML = cartHTML
+			addListeners();
+	}
 	
 // form functionality buttons
 	let firstName = document.getElementById('firstName');
@@ -49,7 +45,6 @@ function showCart(){
 			productString.push(obj._id);
 		};
 
-
 	 	const orderData = {
 					contact : { 
 						firstName: firstName.value,
@@ -59,18 +54,22 @@ function showCart(){
 						email: inputEmail.value
 					},
 					products : productString
-		}
+				}
 		if(firstName.value !== "" && lastName.value !== ""  && inputAddress.value !== "" && inputCity.value !== ""  && inputEmail.value !== ""){
 			if(CART.total !== 0){
-				submitFormData(orderData);
+				
+				if(!regex.test(inputEmail.value)){
+					addAnimation('#validEmail');
+				} else {
+					submitFormData(orderData);
+				}
 			} else {
 				addAnimation('#haveToBuy');
 			}
 		} else {
 			addAnimation('#fill');
 		};
-});
-
+	});
 
 // additional functions 
 
@@ -132,18 +131,14 @@ function showCart(){
 
 	function postOrderData(data){
 		let orderConfirm = document.querySelector('.shopping_container');
-		console.log(data);
-
 		orderConfirm.innerHTML =`
 		<div class="orderInfo">
-			<p>Thank you for your order, your <b>order ID</b> is ${data.orderId}</p>
-			<p>order Address : ${data.contact.address}
-			<p>order Address : ${data.contact.city}
-			<p>order Address : ${data.contact.email}
-			<p>order Address : ${data.contact.lastName}
-			<p>order Address : ${data.contact.firstName}
-			<p>Order total $<strong>${CART.total}<strong></p>
-			<a href="index.html">Continue Shopping</a>
+			<h1>Thank you!</h1>
+			<p class="centered">Your payment <b>$${CART.total}</b> has been processed successfully! An order confirmations has been send to:</p>
+			<p><b>${data.contact.email}</b></p>
+			<p>For your reference, your TeddyStore transaction ID is :</p>
+			<p><b>${data.orderId}</b></p>
+			<a href="index.html" class="btn btn-primary btn-sm">Continue Shopping</a>
 		</div>`;
 		CART.empty();
 	}

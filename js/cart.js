@@ -1,10 +1,4 @@
-export function addAnimation(x){
-		let note = document.querySelector(x);
-		note.style.animationName = "slideDown";
-		setTimeout(function(){
-        	note.style.animationName = null;
-        }, 1800);
-	}
+import {addAnimation} from './utils.js'
 
 export const CART = {
 	        KEY: "storedProducts",

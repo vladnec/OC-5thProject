@@ -8,7 +8,6 @@
 	 <!-- Bootstrap --> 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 	<!-- FontAwesome --> 
 
@@ -17,68 +16,90 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<nav class="navbar">
+
+	<!-- Navbar -->
+	<nav class="navbar">
 	    <div class="container">
 	        <a class="navbar-brand" href="./index.html">TeddyStore</a>
 	        <div class="navbar-right">
 	            <a href="./cart.html"><div class="container minicart"></div></a>
 	        </div>
-	     </div>
+	    </div>
 	</nav>
-
-
-<div class="container shopping_container">
-	<div class="row cart_row">
-		<div id="shopping-cart" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-			<div class="title">
-			Shopping Cart
+	<!-- Shopping Container -->
+	<div class="container shopping_container">
+		<div class="row cart_row">
+			<div id="shopping-cart" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+				<div class="title">
+				Shopping Cart
+				</div>
+				
+				<div class="products"></div>
+				
+				<div class="checkOut-remove">
+					<button class="btn" id="remove-all">Empty cart <i class="fas fa-trash-alt"></i></button>
+					<div class="total"></div>
+				</div>
 			</div>
-			
-			<div class="products"></div>
-			
-			<div class="checkOut-remove">
-				<button class="btn" id="remove-all">Empty cart <i class="fas fa-trash-alt"></i></button>
-				<div class="total"></div>
-			</div>
+		
+			<form id="form" class="col-xs-12 col-sm-12 col-md-4	 col-lg-4">
+				<div class="title">
+					Please fill in the shipping form
+				</div>
+				<div class="form-group">
+					<label for="firstName">First Name</label>
+					<input type="text" class="form-control" id="firstName"required>
+				</div>
+				<div class="form-group">
+					<label for="lastName">Last Name</label>
+					<input type="text" class="form-control" id="lastName" required>
+				</div>
+				<div class="form-group">
+					<label for="inputAddress">Address</label>
+					<input type="text" class="form-control" id="inputAddress" required>
+				</div>
+				<div class="form-group">
+					<label for="inputCity">City</label>
+					<input type="text" class="form-control" id="inputCity" required>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail">Email</label>
+					<input type="email" class="form-control" id="inputEmail"required>	
+				</div>
+				<button id="confirm" type="submit" class="btn btn-primary">CHECKOUT <i class="fas fa-arrow-right"></i></button>
+			</form>
 		</div>
-	
-		<form id="form" class="col-xs-12 col-sm-12 col-md-4	 col-lg-4">
-			<div class="title">
-				Please fill in the shipping form
-			</div>
-			<div class="form-group">
-				<label for="firstName">First Name</label>
-				<input type="text" class="form-control" id="firstName"required>
-			</div>
-			<div class="form-group">
-				<label for="lastName">Last Name</label>
-				<input type="text" class="form-control" id="lastName" required>
-			</div>
-			<div class="form-group">
-				<label for="inputAddress">Address</label>
-				<input type="text" class="form-control" id="inputAddress" required>
-			</div>
-			<div class="form-group">
-				<label for="inputCity">City</label>
-				<input type="text" class="form-control" id="inputCity" required>
-			</div>
-			<div class="form-group">
-				<label for="inputEmail">Email</label>
-				<input type="email" class="form-control" id="inputEmail"required>	
-			</div>
-			<button id="confirm" type="submit" class="btn btn-primary">CHECKOUT <i class="fas fa-arrow-right"></i></button>
-		</form>
 	</div>
-</div>
 
-	<div id="cart"> </div>
+	<!-- Notifications -->
 	<div class="notification" id="fill">
-    You need to fill in the form.
+		You need to fill in the form.
 	</div>
 	<div class="notification" id="haveToBuy">
-    You need to buy something.
+		You need to buy something.
+	</div>
+	<div class="notification" id="validEmail">
+		You need to enter a valid email.
 	</div>
 
+	<!-- Footer -->
+	<footer class="footer-basic-centered">
+		<p class="footer-motto">Everyone loves Teddy Bears.</p>
+		<p class="footer-links">
+			<a href="#">Home</a>
+			·
+			<a href="#">Blog</a>
+			·
+			<a href="#">Pricing</a>
+			·
+			<a href="#">About</a>
+			·
+			<a href="#">Faq</a>
+			·
+			<a href="#">Contact</a>
+		</p>
+		<p class="footer-name">TeddyStore &copy; 2019</p>
+	</footer>	
 
 <script type="module" src="js/order.js"></script>
 </body>

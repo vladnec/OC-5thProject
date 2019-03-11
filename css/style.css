@@ -1,3 +1,21 @@
+
+/*---------------------------------
+  STYLE.CSS Contents
+  0. General Styles
+  1.  Navbar
+  2.  Main Bar
+  3.  Jumbotron
+  4.  Notification Top bar
+  5.  Main Page - Product Grid
+  6.  Single Product Page
+  7.  Shopping Cart Section
+  8.  Order Confirmation Page
+  9.  Footer
+  10. Media Queries
+  11. Animation
+----------------------------------*/
+
+
 /*-----------------------------------
   General Styles
 -----------------------------------*/
@@ -35,27 +53,28 @@ hr{
 }
 
 .navbar{
+  background-color: #e3e2df;
   padding: 15px ;
   border-radius: 0;
   margin: 0;
 }
 
 .navbar-brand{
-  color: #ac3b61;
+  color: #123c69;
   font-family: Open Sans, sans-serif;
   padding-left: 32px;
 }
 
-.navbar-brand:hover{
-  color: #123c69;
-}
 
+/*-----------------------------------
+           Main Bar
+-----------------------------------*/
 .main-bar {
   padding: 20px 0;
-  background: -moz-linear-gradient(left, #eee2dc 0%, #ADACB1 100%);  FF3.6-15 
-  background: -webkit-linear-gradient(left, #eee2dc 0%,#ADACB1 100%);  Chrome10-25,Safari5.1-6 
-  background: linear-gradient(to right, #eee2dc 0%,#ADACB1 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#741d51', endColorstr='#e44e52',GradientType=1 ); /* IE6-9 */
+  background: -moz-linear-gradient(left, #e3e2df 0%, #ADACB1 100%);  
+  background: -webkit-linear-gradient(left, #e3e2df 0%,#ADACB1 100%);  
+  background: linear-gradient(to right, #e3e2df 0%,#ADACB1 100%);  
+  filter: progid:DXImageTransform.Microsoft.gradient;
 }
 
 .main-bar p {
@@ -69,10 +88,13 @@ hr{
     background-size: 30px;
     margin-bottom: 2  0px;
     text-align: center;   
-    color:#ac3b61;
+    color:#9a1750;
     font-family:'Raleway';
 }
 
+/*-----------------------------------
+           Jumbotron
+-----------------------------------*/
 .jumbotron{
   margin-bottom:0;
   background-image:url(../images/hero3.jpg);
@@ -96,8 +118,7 @@ hr{
 
 }
 /*-----------------------------------
-  Main Page
-  Product Grid
+  Notification Top Bar
 -----------------------------------*/
 
 .notification{
@@ -123,16 +144,10 @@ hr{
 #added {
   background-color:green;
 }
-
-@-webkit-keyframes slideDown {
-    0%, 100% { -webkit-transform: translateY(-50px); }
-    10%, 90% { -webkit-transform: translateY(0px); }
-
-}
-@-moz-keyframes slideDown {
-    0%, 100% { -moz-transform: translateY(-50px); }
-    10%, 90% { -moz-transform: translateY(0px); }
-}
+/*-----------------------------------
+        Main Page
+        Product Grid
+-----------------------------------*/
 
 .product-grid{
 	padding:20px 20px;
@@ -208,6 +223,10 @@ h5 {
   color:#123c69
 }
 
+/*-----------------------------------
+  Single Product Page
+-----------------------------------*/
+
 .product_row {
   width:100%;  
 }
@@ -218,41 +237,7 @@ h5 {
   background: linear-gradient(to right, #ffffff 0%,#ADACB1 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#741d51', endColorstr='#e44e52',GradientType=1 ); /* IE6-9 */
 }
-.product-description {
-  color:#000;
-}
 
-.pull-right{
-  float:right;
-  margin:120px 30px 0 0 ;
-}
-.cart {
-  background:transparent;
-  font-weight:bold;
-  color:#000;
-  padding:10px;
-  border:1px solid #000;
-  border-radius:10px;
-  font-size:15px;
-  margin-left:20px;
-  margin-bottom:10px;
-  opacity:0.7;
-  font-family:'raleway';
-}
-.cart:hover{
-  opacity:1;
-}
-.new {
-  background:green;
-  width:50px;
-  color:#fff;
-  font-size:12px;
-  font-weight: bold;
-  text-align:center;
-}
-.col-md-7 h2 {
-  color:;
-}
 .price{
   color:#bab2b5;
   font-size:26px;
@@ -262,55 +247,29 @@ h5 {
 .info h6{
   font-family:'raleway';
 }
-
-
-/*-----------------------------------
-  Single Product Page
------------------------------------*/
-
-.page-header {
+.new {
+  background:green;
+  width:50px;
+  color:#fff;
+  font-size:12px;
+  font-weight: bold;
   text-align:center;
-}
-
-
-.page-header small {
-  display:block;
-}
-
-.cart-row {
-  margin: 10px 0;
-  padding: 10px 0;
-  border-bottom: 1px solid #e1e1e1;
-}
-
-.cart-row div {
-  text-align: center; 
-}
-
-.cart-row img.img-responsive { 
-  margin: 0 auto; 
-}
-
-.cart-qty-input {
-  font-size: 1em;
-  margin-top: 10px;
-  padding: 10px;
-  width: 50%;
-  border: 1px solid black;
 }
 
 
 /*-----------------------------------
  Shopping Cart Section
 -----------------------------------*/
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+
 .shopping_container{
+  margin-top:50px;
   background: -moz-linear-gradient(left, #ffffff 0%, #ADACB1 100%);  FF3.6-15 
   background: -webkit-linear-gradient(left, #ffffff 0%,#ADACB1 100%);  Chrome10-25,Safari5.1-6 
   background: linear-gradient(to right, #ffffff 0%,#ADACB1 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#741d51', endColorstr='#e44e52',GradientType=1 ); /* IE6-9 */
 
 }
+
 /* Product Description */
 .description {
   padding-top: 10px;
@@ -341,16 +300,11 @@ h5 {
   padding:10px;
   
 }
-.cart_row {
-  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
-  border-radius: 6px;
-  margin-top:20px;
-}
 
 .title {
   border-bottom: 1px solid #E1E8EE;
   padding: 20px 30px;
-  color: #ac3b61;
+  color: #123c69;
   font-size: 18px;
   font-weight: 400;
 }
@@ -379,8 +333,6 @@ h5 {
   height: 17px;
   margin-right: 20px;
 }
-
-
 
 
 /* Product Quantity */
@@ -440,17 +392,23 @@ input:focus {
   font-weight:bold;
   font-size:22px;
 }
-#confirm {
+.btn-primary {
   display:block;
   padding:10px;
   margin:30px 0 15px 0;
   border:1px solid #123c69;
-  background:#EEE2dc;
+  font-weight: bold;
+  background:#eee2dc;
   color:#123c69;
-  opacity:0.85;
+  opacity:0.65;
 }
-#confirm:hover{
+.btn-primary:hover{
   opacity:1;
+  background:#eee2dc;
+  outline:none;
+  border:1px solid #123c69;
+  color:#123c69;
+
 }
 
 #remove-all {
@@ -460,13 +418,31 @@ input:focus {
   margin-top:40px;
   text-transform: uppercase;
 }
-#remove-all i {
-  font-size:0.8em;
-}
 #remove-all:hover {
   opacity:1;
 }
+#remove-all i {
+  font-size:0.8em;
+}
+.cart {
+  background:transparent;
+  font-weight:bold;
+  color:#000;
+  padding:10px;
+  border:1px solid #000;
+  border-radius:10px;
+  font-size:15px;
+  margin-left:20px;
+  margin-bottom:10px;
+  opacity:0.7;
+  font-family:'raleway';
+}
+.cart:hover{
+  opacity:1;
+}
 
+
+/* Form  */
 #form{
   padding:10px;
 }
@@ -487,13 +463,101 @@ label{
 .form-control input{
   margin-left:10px;
 }
+/*-----------------------------------
+    Order Confirmation Page
+-----------------------------------*/
+
+.orderInfo{
+  min-height:600px;
+  margin-top:60px;
+  margin-bottom:20px;
+  background-image:url(../images/mail.png);
+  background-size:150px 120px;
+  background-repeat:no-repeat;
+  background-position:50% 30%;
+}
+.orderInfo h1{
+  text-align:center;
+  padding-top:60px;
+}
+.orderInfo p {
+  text-align: center;
+  margin-top:5px;
+}
+.orderInfo p:first-of-type  {
+  margin-top:160px;
+}
+.orderInfo button{
+  display:block;
+  margin:50px auto;
+}
+.centered{
+  padding-top:10px;
+  margin:0 auto;
+}
+
+.confirmImage{
+  
+  height:50px;
+  width:50px;
+}
+.btn-sm{
+  display:table;
+  margin:20px auto;
+  padding:10px;
+  font-size:1.2em;
+
+}
+
+
+/*-----------------------------------
+           Footer
+-----------------------------------*/
+
+
+.footer-basic-centered{
+  background-color: #e3e2df;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  font: normal 18px sans-serif;
+  padding: 45px;
+  margin-top: 210px;
+}
+
+.footer-basic-centered .footer-motto{
+  color:  #123c69;
+  font-size: 24px;
+  margin: 0;
+}
+
+.footer-basic-centered .footer-name{
+  color:  #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer-basic-centered .footer-links{
+  list-style: none;
+  font-weight: bold;
+  color:  #123c69;
+  padding: 35px 0 23px;
+  margin: 0;
+}
+
+.footer-basic-centered .footer-links a{
+  display:inline-block;
+  text-decoration: none;
+  color: inherit;
+}
 
 
 
 
-
-
-/*/////////////////////////////*/
+/*-----------------------------------
+           Media Queries
+-----------------------------------*/
 
 
 
@@ -522,15 +586,32 @@ label{
   .buttons {
     margin-right: 20px;
   }
-}
-#image {
-  width:120px;
-  height:80px;
+  #image {
+    width:120px;
+    height:80px;
+  }
 }
 /*-----------------------------------
  Small devices (tablets, 768px and up)
 -----------------------------------*/
+@media (max-width: 480px){
+  .buttons{
+    margin:0;
+  }
 
+  #image{
+    width:0;
+    height:0;
+  }
+  .cartImage{
+    padding:0;
+    width:0%;
+    margin:0;
+  }
+  .footer-basic-centered{
+    margin-top:10px;
+  }
+}
 @media (min-width: 768px) {
 
   .page-header {
@@ -561,8 +642,24 @@ label{
     text-align: center;
     margin: 6px 0;
   }
-  .buttons {
-    margin-right: 20px;
+  .buttons{
+    margin-right:5px;
   }
+
+
 }
+
+
+/*-----------------------------------
+           Animation
+-----------------------------------*/
+
+@-webkit-keyframes slideDown {
+    0%, 100% { -webkit-transform: translateY(-50px); }
+    10%, 90% { -webkit-transform: translateY(0px); }
+
+}
+@-moz-keyframes slideDown {
+    0%, 100% { -moz-transform: translateY(-50px); }
+    10%, 90% { -moz-transform: translateY(0px); }
 }
