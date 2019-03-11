@@ -3,12 +3,10 @@
 	import {CART} 		from './cart.js';
 	import {gridTemplate} from '../views/singleItem.js'
 	import {renderTemplate} from '../views/singleItem.js'
+	import {headerTemplate} from '../views/singleItem.js'
 
 
-// export PRODUCTS 
-
-
-	export let PRODUCT = [];
+let PRODUCT = [];
 
 
 // when page loads 
@@ -44,6 +42,7 @@
 
 	function showData( items ){
 		let products = document.getElementById('app');
+		let header = document.querySelector('#header');
 		PRODUCT = items;
 		if(productID === null) {
 		let gridHTML = ''
@@ -51,30 +50,38 @@
 				let productHTML = renderTemplate(gridTemplate, product);
 				gridHTML += productHTML
 			}
+		 header.innerHTML = headerTemplate
 		 products.innerHTML =gridHTML;
 
 		} else {
-
+			let header = document.querySelector('.header')
+			header.innerHTML = items.name;
 			products.innerHTML =`
-				<div class="row">
-					<div class="col-xs-4 col-sm-4 col-m-4 col-lg-4">
-						<img class="w-100" src=" ${items.imageUrl}">
+				
+				<div class="row product_row">
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<img class="d-block w-100" src=" ${items.imageUrl}">
 					</div>
-					<div class="col-xs-8 col-sm-8 col-m-8 col-lg-8">
-						<h5> ${items.name} </h5>
-						<p> ${items.description}</p>	
-						<span> ${items.price} $ </span>
-						<div class="options">
-							<label>Color :</label>
+					<div class="col-xs-12 col-sm-12 col-md-7 info">
+					<a href="index.html" class="close"><span aria-hidden="true">&times;</span></a>
+						<p class="new">NEW</p>
+						<h2>Description</h2>
+						<h6>${items.description}</h6>
+						<img class="stars" src="./images/stars.png">
+						<p class="price">USD ${items.price}$ </p>
+						<p><b>Availability:</b> In Stock</p>
+						<p><b>Condition:</b> New</p>
+						
+							<label><b>Color</b> :</label>
 							<select id="item_color">
 								<option value="${items.colors[0]}">${items.colors[0]}</option>
 								<option value="${items.colors[1]}">${items.colors[1]}</option>
 								<option value="${items.colors[2]}">${items.colors[2]}</option>
 							</select>
-						</div>
-						<button class="btn buy pull-right" data-id="${items._id}" id="buy">Buy</button>
-				 	</div>
-				</div>
+							<button class="btn btn-default cart" data-id="${items._id}" id="buy">ADD TO CART</button>
+						
+						
+					</div>
 			</div>`;
 			var button = document.querySelector('#buy');
 			button.addEventListener('click',addItem);
@@ -103,7 +110,6 @@
 	function addItem(ev){
 		ev.preventDefault();
 		let id = ev.target.getAttribute('data-id');
-		CART.add(id,1);
+		CART.add(id,PRODUCT);
 
 	}
-

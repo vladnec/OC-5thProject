@@ -1,4 +1,10 @@
-import {PRODUCT} from './script.js';
+export function addAnimation(x){
+		let note = document.querySelector(x);
+		note.style.animationName = "slideDown";
+		setTimeout(function(){
+        	note.style.animationName = null;
+        }, 1800);
+	}
 
 export const CART = {
 	        KEY: "storedProducts",
@@ -16,9 +22,9 @@ export const CART = {
 	        	}
 	        },
 	       
-	        async sync(){
+	        sync(){
 	        	let _cart =JSON.stringify(CART.contents);
-	        	await localStorage.setItem(CART.KEY, _cart);
+	        	localStorage.setItem(CART.KEY, _cart);
 	        },
 	        
 	        find(id){
@@ -31,25 +37,25 @@ export const CART = {
 	        		return match[0];
 	        },
 	        
-	        add(id){
+	        add(id, prodData){
 	        	if(CART.find(id)){
 	        		CART.increase(id,1);
-	        		alert('Item Added to Cart');
+	        		addAnimation('#added');
 	        	}
 	        	else {
-	        		if (PRODUCT._id === id){
+	        		if (prodData._id === id){
 	        			let obj = {
-	        				_id:PRODUCT._id,
-	        				name:PRODUCT.name,
+	        				_id:prodData._id,
+	        				name:prodData.name,
 	        				qty:1,
-	        				subtotal:PRODUCT.price,
+	        				subtotal:prodData.price,
 	        				// color:selectedColor,
-	        				price:PRODUCT.price,
-	        				description:PRODUCT.description,
-	        				imageUrl:PRODUCT.imageUrl
+	        				price:prodData.price,
+	        				description:prodData.description,
+	        				imageUrl:prodData.imageUrl
 	        			}
 	        			CART.contents.push(obj);
-	        			alert('Item Added to Cart');
+	        			addAnimation('#added');
 	        			// update localStorage
 	        			CART.sync();
 	        			CART.getTotal();

@@ -2,6 +2,8 @@
 	import {CART} from './cart.js';
 	import {renderTemplate} from '../views/singleItem.js'
 	import {cartTemplate} from '../views/singleItem.js'
+	import {addAnimation} from './cart.js'
+
 
 
 // when page loads 
@@ -14,7 +16,9 @@
 	    showCart();
 	});
 
-	function showCart(){
+// render the cart
+
+function showCart(){
 		let cart = document.querySelector('.products'); 
 		let objects = CART.sort('name');
 		let cartHTML = '';
@@ -23,33 +27,12 @@
 			cartHTML += productHTML
 		}
 		cart.innerHTML = cartHTML
-
-	// cart functionality
-
-		// selecting the buttons
-		let increaseButton = document.querySelectorAll('.increase');
-		let decreaseButton = document.querySelectorAll('.decrease');
-		let removeBtn = document.querySelectorAll('.delete-btn');
-		
-		let totalPrice = document.querySelector('.total')
-		totalPrice.innerHTML = 'Total price: $' +CART.total;
-
-		// adding Event Listeners
-		for(var i=0 ; i < increaseButton.length ; i++){
-		 increaseButton[i].addEventListener('click', increaseCart)};
-		
-		for(var i=0 ; i < decreaseButton.length ; i++){
-		 decreaseButton[i].addEventListener('click', decreaseCart)};
-	 	
-		for(var i=0 ; i < removeBtn.length; i++){
-		 removeBtn[i].addEventListener('click',removeItem);}	 
+		addListeners();
 }
 
 
-// variables
-	let emptyCart = document.getElementById('remove-all');
-	emptyCart.addEventListener('click', emptyCartFn);
-
+// create the array containing all CART.contents._id
+	
 // form functionality buttons
 	let firstName = document.getElementById('firstName');
 	let lastName = document.getElementById('lastName');
@@ -58,15 +41,14 @@
 	let inputEmail = document.getElementById('inputEmail');
 	let submitBtn = document.getElementById('confirm');
 
-// create the array containing all CART.contents._id
-	let productString = [];
+// create object with form data and product and make POST request
+	submitBtn.addEventListener('click', ($event) =>{
+	 	$event.preventDefault();
+	 	let productString = [];
 		for(let obj of CART.contents){
 			productString.push(obj._id);
 		};
 
-// create object with form data and product and make POST request
-	submitBtn.addEventListener('click', ($event) =>{
-	 	$event.preventDefault();
 
 	 	const orderData = {
 					contact : { 
@@ -78,8 +60,17 @@
 					},
 					products : productString
 		}
-		submitFormData(orderData);
-	 });		
+		if(firstName.value !== "" && lastName.value !== ""  && inputAddress.value !== "" && inputCity.value !== ""  && inputEmail.value !== ""){
+			if(CART.total !== 0){
+				submitFormData(orderData);
+			} else {
+				addAnimation('#haveToBuy');
+			}
+		} else {
+			addAnimation('#fill');
+		};
+});
+
 
 // additional functions 
 
@@ -140,12 +131,40 @@
 	}
 
 	function postOrderData(data){
-		let orderConfirm = document.getElementById('cart'); 
-		orderConfirm.innerHTML =
-		`<div class="orderInfo">
-			<p>Thank you for your order, your order Id is ${data.orderId}</p>
+		let orderConfirm = document.querySelector('.shopping_container');
+		console.log(data);
+
+		orderConfirm.innerHTML =`
+		<div class="orderInfo">
+			<p>Thank you for your order, your <b>order ID</b> is ${data.orderId}</p>
+			<p>order Address : ${data.contact.address}
+			<p>order Address : ${data.contact.city}
+			<p>order Address : ${data.contact.email}
+			<p>order Address : ${data.contact.lastName}
+			<p>order Address : ${data.contact.firstName}
 			<p>Order total $<strong>${CART.total}<strong></p>
+			<a href="index.html">Continue Shopping</a>
 		</div>`;
 		CART.empty();
 	}
 	
+	function addListeners(){
+		let increaseButton = document.querySelectorAll('.increase');
+		let decreaseButton = document.querySelectorAll('.decrease');
+		let emptyCart = document.getElementById('remove-all');
+		let removeBtn = document.querySelectorAll('.delete-btn');
+		
+		let totalPrice = document.querySelector('.total')
+		totalPrice.innerHTML = 	`<p>Tax Rate:0</p><p>Tax:$0.00</p><p>Shipping:$0.00</p><p>Total:$${CART.total}</p>`
+		for(var i=0 ; i < increaseButton.length ; i++){
+		 increaseButton[i].addEventListener('click', increaseCart)};
+		
+		for(var i=0 ; i < decreaseButton.length ; i++){
+		 decreaseButton[i].addEventListener('click', decreaseCart)};
+	 	
+		for(var i=0 ; i < removeBtn.length; i++){
+		 removeBtn[i].addEventListener('click',removeItem);}	 
+
+		emptyCart.addEventListener('click', emptyCartFn);
+	}	
+

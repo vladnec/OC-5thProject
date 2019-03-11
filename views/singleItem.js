@@ -3,14 +3,19 @@ export var gridTemplate =
 							`<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
 		                        <div class="image">
 		                            <a href= index.html?productID={{ _id }}/>
-		                                <img src="{{ imageUrl }}" class="w-100">
+		                                <img src="{{ imageUrl }}" class="w-100 gridImg">
 		                                <div class="overlay">
-		                                    <Div class="detail">View Details</Div>
+		                                    <Div class="btn-details detail">View Details</Div>
 		                                </div>
 		                            </a>
 		                        </div>
-		                        <h5 class="text-center">{{ name }}</h5>
-		                        <h5>Price:{{ price }}</h5>
+		                        <div class="info-card">
+			                        <img class="stars" src="./images/stars.png">
+			                        <h6 class="text-right"> {{ price }}$ </h6> 
+		                        </div>
+
+		                        <h5>{{ name }}</h5>
+
 		                    </div>` ;
 
 
@@ -39,7 +44,30 @@ export var cartTemplate = `
 		<div class="total-price">{{ subtotal }}$</div>
 	</div>
 `
-
+export var headerTemplate = `	<div class="jumbotron">
+        <div class="container">
+        	<h1 class="display-4">Handmade Teddies</h2>
+        	<p class="lead">Buy yours now!</p>
+    	</div>
+    </div>
+	   <div class="main-bar">
+        <div class="container">
+            <div class="row">
+            	 <div class="col-lg-4 col-xs-4 icon icon1">
+                        <p>High Quality<br>
+                        Each is made from quality material for long life.</p>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 icon icon2">
+                        <p>The perfect gift for any occasion<br>
+                        Everyone loves teddy bears!</p>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 icon icon3">
+                        <p>Customize your own!<br>
+                        You'll find sorts of colors, shapes and sizes.</p>
+                    </div>      
+            </div>
+        </div>
+    </div>` ;
 
 export function renderTemplate(htmlTemplate, obj) {
 	    // Define a regular expression that matches "{{ prop_name }}"
