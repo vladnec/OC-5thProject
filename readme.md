@@ -2,7 +2,7 @@
 
 
 ### Because the API is hosted locally i could not deploy my work on the internet.
-Here is are some pictures with the final result
+Here are some pictures with the final result
 
 
 ![TeddyStore - main page](https://user-images.githubusercontent.com/46979043/54190307-ded75700-44b3-11e9-9e0f-b9889c59f32d.jpg)
