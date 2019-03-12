@@ -1,4 +1,17 @@
-Third Project for OpenClassRooms "Junior Web Dev" path. 
+## Fifth Project for OpenClassRooms "Junior Web Dev" path. 
+
+
+### Because the API is hosted locally i could not deploy my work on the internet.
+Here is are some pictures with the final result
+
+
+![TeddyStore - main page](https://user-images.githubusercontent.com/46979043/54190307-ded75700-44b3-11e9-9e0f-b9889c59f32d.jpg)
+
+![TeddyStore - Product Page](https://user-images.githubusercontent.com/46979043/54190309-df6fed80-44b3-11e9-9eef-551d774aad2f.png)
+
+![TeddyStore - Cart Page](https://user-images.githubusercontent.com/46979043/54190305-ded75700-44b3-11e9-92be-b074f3282db8.png)
+
+![TeddyStore - Order Confirmation Page](https://user-images.githubusercontent.com/46979043/54190308-ded75700-44b3-11e9-9936-122486ffde3d.png)
 
 ----> Scenario <-----
 
