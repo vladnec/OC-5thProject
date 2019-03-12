@@ -1,4 +1,4 @@
-export var gridTemplate = `
+export const gridTemplate = `
 	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 product-grid">
 		<div class="image">
 			<a href= index.html?productID={{ _id }}/>
@@ -16,7 +16,28 @@ export var gridTemplate = `
 	</div>  
 	`;
 
-export var cartTemplate = `
+export const productTemplate = `
+	<div class="row product_row">
+		<div class="col-xs-12 col-sm-12 col-md-5">
+			<img class="d-block w-100" src=" {{ imageUrl }}">
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-7 info">
+			<a href="index.html" class="close"><span aria-hidden="true"><i class="fas fa-times-circle"></i></span></a>
+			<p class="new">NEW</p>
+			<h2>Description</h2>
+			<h6>{{ description }}</h6>
+			<img class="stars" src="./images/stars.png">
+			<p class="price">USD {{ price }} </p>
+			<p><b>Availability:</b> In Stock</p>
+			<p><b>Condition:</b> New</p>
+			<label><b>Color</b> :</label>
+			<select id="item_color">
+			</select>
+			<button class="btn btn-default cart" data-id="{{ _id}}" id="buy">ADD TO CART</button>					
+		</div>
+	</div>`;
+
+export const cartTemplate = `
 	<div class="product">
 		<div class="buttons">
 			<img src="./images/delete-icn.svg" alt="removeSign" class="delete-btn" data-id= "{{ _id }}"/>
@@ -37,7 +58,7 @@ export var cartTemplate = `
 		<div class="total-price">{{ subtotal }}$</div>
 	</div>`;
 
-export var headerTemplate = `
+export const headerTemplate = `
 	<div class="jumbotron">
 	       <div class="container">
 	        <h1 class="display-4">Handmade Teddies</h2>

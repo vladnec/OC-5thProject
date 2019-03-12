@@ -3,7 +3,7 @@
 	import {cartTemplate} 	from '../views/templates.js'
 	import {renderTemplate} from './utils.js'
 	import {addAnimation} 	from './utils.js'
-	import {regex} 	from './utils.js'
+	import {validEmail} 	from './utils.js'
 
 // when page loads 
 	document.addEventListener('DOMContentLoaded',()=>{
@@ -40,6 +40,7 @@
 // create object with form data and product and make POST request
 	submitBtn.addEventListener('click', ($event) =>{
 	 	$event.preventDefault();
+	 	// create the array of products available in localStorage
 	 	let productString = [];
 		for(let obj of CART.contents){
 			productString.push(obj._id);
@@ -55,10 +56,12 @@
 					},
 					products : productString
 				}
+		// check if all the form fields are filled in
 		if(firstName.value !== "" && lastName.value !== ""  && inputAddress.value !== "" && inputCity.value !== ""  && inputEmail.value !== ""){
+			// check if CART.total is 0, meaning the user has not added products to the cart
 			if(CART.total !== 0){
-				
-				if(!regex.test(inputEmail.value)){
+				// use validEmail const to test the mail the user has written	
+				if(!validEmail.test(inputEmail.value)){
 					addAnimation('#validEmail');
 				} else {
 					submitFormData(orderData);
@@ -71,34 +74,6 @@
 		};
 	});
 
-// additional functions 
-
-	function emptyCartFn(ev){
-		ev.preventDefault();
-		CART.empty();
-		showCart();
-	}
-
-	function removeItem(ev){
-		ev.preventDefault();
-		let id = ev.target.getAttribute('data-id');
-		CART.remove(id);
-		showCart();
-	}
-
-	function increaseCart(ev){
-	    ev.preventDefault();
-	    let id = ev.target.getAttribute('data-id');
-	    CART.increase(id, 1);
-	    showCart();
-	}
-	        
-	function decreaseCart(ev){
-	    ev.preventDefault();
-	    let id = ev.target.getAttribute('data-id');
-	    CART.reduce(id, 1);
-	    showCart();
-	}
 
 	function makeRequest(data){
 		return new Promise((resolve,reject)=>{
@@ -142,6 +117,35 @@
 		</div>`;
 		CART.empty();
 	}
+
+// additional functions 
+
+	function emptyCartFn(ev){
+		ev.preventDefault();
+		CART.empty();
+		showCart();
+	}
+
+	function removeItem(ev){
+		ev.preventDefault();
+		let id = ev.target.getAttribute('data-id');
+		CART.remove(id);
+		showCart();
+	}
+
+	function increaseCart(ev){
+	    ev.preventDefault();
+	    let id = ev.target.getAttribute('data-id');
+	    CART.increase(id, 1);
+	    showCart();
+	}
+	        
+	function decreaseCart(ev){
+	    ev.preventDefault();
+	    let id = ev.target.getAttribute('data-id');
+	    CART.reduce(id, 1);
+	    showCart();
+	}
 	
 	function addListeners(){
 		let increaseButton = document.querySelectorAll('.increase');
@@ -151,13 +155,13 @@
 		
 		let totalPrice = document.querySelector('.total')
 		totalPrice.innerHTML = 	`<p>Tax Rate:0</p><p>Tax:$0.00</p><p>Shipping:$0.00</p><p>Total:$${CART.total}</p>`
-		for(var i=0 ; i < increaseButton.length ; i++){
+		for(let i=0 ; i < increaseButton.length ; i++){
 		 increaseButton[i].addEventListener('click', increaseCart)};
 		
-		for(var i=0 ; i < decreaseButton.length ; i++){
+		for(let i=0 ; i < decreaseButton.length ; i++){
 		 decreaseButton[i].addEventListener('click', decreaseCart)};
 	 	
-		for(var i=0 ; i < removeBtn.length; i++){
+		for(let i=0 ; i < removeBtn.length; i++){
 		 removeBtn[i].addEventListener('click',removeItem);}	 
 
 		emptyCart.addEventListener('click', emptyCartFn);

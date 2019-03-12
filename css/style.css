@@ -1,18 +1,18 @@
 
 /*---------------------------------
-  STYLE.CSS Contents
-  0. General Styles
-  1.  Navbar
-  2.  Main Bar
-  3.  Jumbotron
-  4.  Notification Top bar
-  5.  Main Page - Product Grid
-  6.  Single Product Page
-  7.  Shopping Cart Section
-  8.  Order Confirmation Page
-  9.  Footer
-  10. Media Queries
-  11. Animation
+  STYLE.CSS Contents 
+ 0. General Styles                   19  -  41
+ 1.  Navbar                          42  -  68
+ 2.  Main Bar                        69  -  94  
+ 3.  Jumbotron                       95  - 119
+ 4.  Notification Top bar           120  - 146
+ 5.  Main Page - Product Grid       147  - 225
+ 6.  Single Product Page            226  - 262
+ 7.  Shopping Cart Section          263  - 468
+ 8.  Order Confirmation Page        469  - 515
+ 9.  Footer                         516  - 560
+ 10. Media Queries                  561  - 656
+ 11. Animation                      657  - 668
 ----------------------------------*/
 
 
@@ -254,6 +254,9 @@ h5 {
   font-size:12px;
   font-weight: bold;
   text-align:center;
+}
+.fa-times-circle{
+  padding:10px;
 }
 
 
