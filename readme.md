@@ -1,17 +1,8 @@
 ## Fifth Project for OpenClassRooms "Junior Web Dev" path. 
 
 
-### Because the API is hosted locally i could not deploy my work on the internet.
-Here are some pictures with the final result
 
-
-![TeddyStore - main page](https://user-images.githubusercontent.com/46979043/54190307-ded75700-44b3-11e9-9e0f-b9889c59f32d.jpg)
-
-![TeddyStore - Product Page](https://user-images.githubusercontent.com/46979043/54190309-df6fed80-44b3-11e9-9eef-551d774aad2f.png)
-
-![TeddyStore - Cart Page](https://user-images.githubusercontent.com/46979043/54190305-ded75700-44b3-11e9-92be-b074f3282db8.png)
-
-![TeddyStore - Order Confirmation Page](https://user-images.githubusercontent.com/46979043/54190308-ded75700-44b3-11e9-9936-122486ffde3d.png)
+My role was to build the front end using JavaScript - no frameworks allowed. 
 
 ----> Scenario <-----
 
@@ -27,20 +18,7 @@ Initially, the front end will require only four pages:
     >A cart page, showing a summary of products in the cart, the total price, and a form with which to submit an order
     >An order confirmation page, thanking the user for their order, showing the total price and the order ID returned by the server
 
-Sheila has had her back-end developer set up APIs for three themed stores and is allowing you to choose whichever store inspires you the most:
 
-    >Handmade teddy bears
-    >Vintage cameras
-    >Oak furniture
-
-Using your design skills and knowledge of HTML, CSS, and JavaScript, you set out to design and build the web app for one of these three stores.
-API URLs
-
-The back-end developer has provided URLs for each store (your mentor will provide these):
-
-    >Camera store
-    >Handmade teddy bear store
-    >Oak furniture store
 
 
 Each API contains three endpoints:
@@ -70,3 +48,21 @@ The back-end developer has informed you that all products have the following att
 | Price         | Number        |
 | description   | string        |
 | imageURL      | string        |
+
+
+
+
+
+
+
+### Because the API is hosted locally i could not deploy my work on the internet.
+Here are some pictures with the final result
+
+
+![TeddyStore - main page](https://user-images.githubusercontent.com/46979043/54190307-ded75700-44b3-11e9-9e0f-b9889c59f32d.jpg)
+
+![TeddyStore - Product Page](https://user-images.githubusercontent.com/46979043/54190309-df6fed80-44b3-11e9-9eef-551d774aad2f.png)
+
+![TeddyStore - Cart Page](https://user-images.githubusercontent.com/46979043/54190305-ded75700-44b3-11e9-92be-b074f3282db8.png)
+
+![TeddyStore - Order Confirmation Page](https://user-images.githubusercontent.com/46979043/54190308-ded75700-44b3-11e9-9936-122486ffde3d.png)
