@@ -1,17 +1,13 @@
-## Fifth Project for OpenClassRooms "Junior Web Dev" path. 
+# Fifth Project for OpenClassRooms "Junior Web Dev" path. 
 
 
 
-My role was to build the front end using JavaScript - no frameworks allowed. 
+My role was to build the front end (as the back end has already been fully developed and tested) using JavaScript. 
 
-----> Scenario <-----
+## Scenario
 
 
-Sheila, a friend of yours from school, called you last week, telling you she has managed to secure investment for her new online sales business, Orinoco. As opposed to following an Amazon-style, one site-sells-all web app, Sheila wants to set up specific, themed apps which only sell one group of products each. She knows that you work in web development, so of course she thought of you first.
-
-Sheila's investors are asking her to set up an initial MVP to demonstrate how her businesses will function. She has a back-end developer working on the APIs, but she needs someone to build the front end.
-
-Initially, the front end will require only four pages:
+### Initially, the front end will require only four pages:
 
     >A list view page, showing all items available for sale
     >A single product page, which will dynamically show the item selected by the user and allow them to personalize the product and add it to their cart
@@ -19,9 +15,7 @@ Initially, the front end will require only four pages:
     >An order confirmation page, thanking the user for their order, showing the total price and the order ID returned by the server
 
 
-
-
-Each API contains three endpoints:
+### Each API contains three endpoints:
 
 | Verb | Endpoint | Expected request body      | Response						   |
 | -----| :--------| :--------------------------| :---------------------------------|
@@ -37,7 +31,7 @@ For POST routes, the contact object sent to the backend must contain firstName, 
 
 For the MVP, product personalization will not be functional: the single item page will have a dropdown menu allowing the user to choose a personalization option, but this will not be sent to the server or reflected in the server response.
 
-DATA TYPES
+### DATA TYPES
 
 The back-end developer has informed you that all products have the following attributes:
 
